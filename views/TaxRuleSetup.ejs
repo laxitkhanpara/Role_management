@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+      
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>Department</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+
+                                                            <th>Total Income</th>
+                                                            <th>Tax Rate %</th>
+                                                            <th>Taxable Amount</th>
+                                                            <th>Update</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="table">
+
+                                                        <% TaxRuleSetup.forEach((item)=>{ %>
+
+
+                                                            <tr class="align-middle" id="fiellllds">
+                                                                <td>
+                                                                    <div class="mb-3">
+                                                                        <input name="Total_Income"
+                                                                            class="form-control cal" id="Total_Income"
+                                                                            type="number" aria-describedby="emailHelp"
+                                                                            value="<%=item.Total_Income%>">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="mb-3">
+                                                                        <input name="Tax_Rate" class="form-control cal"
+                                                                            value="<%=item.Tax_Rate%>" id="Tax_Rate"
+                                                                            type="number" aria-describedby="emailHelp">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="mb-3">
+                                                                        <input name="Taxable_Amount"
+                                                                            value="<%=item.Taxable_Amount%>"
+                                                                            class="form-control" id="Taxable_Amount"
+                                                                            type="number" aria-describedby="emailHelp">
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <ul class="action">
+                                                                        <li class="edit"> <a data-id="<%=item.id%>"
+                                                                            data-Total_Incomeee="<%=item.Total_Income%>"
+                                                                            data-Tax_Rateee="<%=item.Tax_Rate%>"
+                                                                            data-Taxable_Amountee="<%=item.Taxable_Amount%>"
+                                                                                id="updatetax"><i
+                                                                                    data-feather="refresh-ccw"></i></a>
+                                                                        </li>
+                                                                        <li class="delete"><a
+                                                                                href="/TaxRuleSetup/delete/<%=item.id%>"><i
+                                                                                    class="icon-trash"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+
+                                                            <% }) %>
+
+                                                                <!-- defult field-->
+                                                                <form action="/newTaxRuleSetup" method="post">
+                                                                    <tr class="align-middle fieldss" id="fields">
+                                                                        <td>
+                                                                            <div class="mb-3">
+                                                                                <input name="Total_Income"
+                                                                                    class="form-control cal"
+                                                                                    id="Total_Income" type="number"
+                                                                                    aria-describedby="emailHelp"
+                                                                                    value="00">
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="mb-3">
+                                                                                <input name="Tax_Rate"
+                                                                                    class="form-control cal" value="00"
+                                                                                    id="Tax_Rate" type="number"
+                                                                                    aria-describedby="emailHelp">
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="mb-3">
+                                                                                <input name="Taxable_Amount" value="00"
+                                                                                    class="form-control"
+                                                                                    id="Taxable_Amount" type="number"
+                                                                                    aria-describedby="emailHelp">
+                                                                            </div>
+                                                                        </td>
+                                                                        <td>
+                                                                            <ul class="action">
+                                                                                <li>
+                                                                                    <button type="button"
+                                                                                        id="newtax">Add</button>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </td>
+                                                                    </tr>
+                                                                </form>
+                                            </div>
+
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <form action="/newTaxRuleSetup" method="post" id="submitnewtex">
+                            <input type="number" name="Total_Income" value="00" hidden id="Total_Incomee">
+                            <input type="number" name="Tax_Rate" value="00" hidden id="Tax_Ratee">
+                            <input type="number" name="Taxable_Amount" value="00" hidden id="Taxable_Amounte">
+                        </form>
+                        <form method="post" id="newsubmitnewtex">
+                            <input type="number" name="Total_Income" hidden id="Total_Incomeee">
+                            <input type="number" name="Tax_Rate" hidden id="Tax_Rateee">
+                            <input type="number" name="Taxable_Amount" hidden id="Taxable_Amountee">
+                        </form>
+
+                        <button class="btn btn-primary" id="addfield" type="button" data-bs-original-title=""
+                            title="">Add Field</button>
+                    </div>
+
+            </div>
+    </div>
+    </div>
+
+    
+
+  
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

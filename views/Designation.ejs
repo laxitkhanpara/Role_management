@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addDesignation">Add Designation</button>
+                            </div>
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>Designation</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>Designation</th>
+                                                            <th>Options</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% Designation.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.Designation %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ul class="action">
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-name="<%=item.Designation%>"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editDesignation"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                    href="/Designations/delete/<%=item.id%>"><i
+                                                                                        class="icon-trash"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add Designation -->
+    <div class="modal fade model-of-addDesignation" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Designation</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newDesignation" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Designation</label>
+                            <input name="Designation" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Designation">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit Designation -->
+    <div class="modal fade model-of-editDesignation" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Designation</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formaction" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Designation</label>
+                            <input name="Designation" class="form-control" id="Designat" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Designation">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Done</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

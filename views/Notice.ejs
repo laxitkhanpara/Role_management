@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+                            <%if(PermRole[0].Role==1){%>
+                                <!-- Small modal-->
+                                <div class="text-end">
+                                    <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                        data-bs-target=".model-of-addNotice">Add Notice</button>
+                                </div>
+                                <%}%>
+                                    <div class="row">
+                                        <!-- Zero Configuration  Starts-->
+                                        <div class="col-sm-12">
+                                            <div class="card">
+                                                <div class="card-header pb-0">
+                                                    <h4>Notice</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive theme-scrollbar">
+                                                        <table class="display" id="basic-1">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S/l</th>
+                                                                    <th>Notice</th>
+                                                                    <th>Status</th>
+                                                                    <th>Published Date</th>
+                                                                    <th>Options</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                <% var i=1 %>
+                                                                    <% Notice.forEach((item)=>{ %>
+
+                                                                        <tr class="align-middle">
+                                                                            <th scope="row">
+                                                                                <%=i++%>
+                                                                            </th>
+
+                                                                            <td>
+                                                                                <%=item.Notice %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%if(item.Status=="Published"){%>
+                                                                                    <span class="badge badge-success">Published</span>
+                                                                                <%}else{%>
+                                                                                <span class="badge badge-danger">Unpublished</span>
+                                                                                <%}%>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=item.published %>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <ul class="action">
+                                                                                    <%if(PermRole[0].Role==1){%>
+                                                                                        <li class="edit"> <a
+                                                                                                id="editData"
+                                                                                                data-id="<%=item.id%>"
+                                                                                                data-Notice="<%=item.Notice%>"
+                                                                                                data-Description="<%=item.Description%>"
+                                                                                                data-Status="<%=item.Status%>"
+                                                                                                data-published="<%=item.published%>"
+                                                                                                data-NoticeFile="<%=item.NoticeFile%>"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target=".model-of-editNotice"><i
+                                                                                                    class="icon-pencil-alt"></i></a>
+                                                                                        </li>
+                                                                                        
+                                                                                            <li class="delete"><a
+                                                                                                    href="/Notices/delete/<%=item.id%>"><i
+                                                                                                        class="icon-trash"></i></a>
+                                                                                            </li>
+                                                                                            <%}else{%>
+                                                                                                <h6>disable</h6>
+                                                                                            <%}%>
+                                                                                </ul>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <% }) %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add Notice -->
+    <div class="modal fade model-of-addNotice" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Notice</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" action="/newNotice" method="post" class="theme-form">
+
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Notice</Title></label>
+                            <input required name="Notice" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Notice">
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <label class="form-label" for="exampleFormControlTextarea4">Description</label>
+                                <textarea name="Description" class="form-control" id="exampleFormControlTextarea4"
+                                    rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label f-w-500">Status</label>
+                            <select name="Status" class="form-control btn-square">
+                                <option selected disabled>--Please Select--</option>
+                                <option value="Published">Published</option>
+                                <option value="Unpublished">Unpublished</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <div class="date-picker">
+                                <label class="form-label f-w-500">Published Date</label>
+                                <div class="input-group">
+                                    <input required name="published" class="datepicker-here form-control digits"
+                                        data-position="top right" type="text" data-language="en">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label f-w-500" for="exampleFormControlTextarea4">NoticeFile:</label>
+                            <input required type="file" name="NoticeFile" id="NoticeFile">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit Notice -->
+    <div class="modal fade model-of-editNotice" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Notice</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" method="post" class="theme-form">
+
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Notice</Title></label>
+                            <input required name="Notice" class="form-control" id="Notice" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Notice">
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <label class="form-label" for="exampleFormControlTextarea4">Description</label>
+                                <textarea name="Description" class="form-control" id="Description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label f-w-500">Status</label>
+                            <select id="Description" name="Status" class="form-control btn-square">
+                                <option selected disabled>--Please Select--</option>
+                                <option value="Published">Published</option>
+                                <option value="Unpublished">Unpublished</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div class="date-picker">
+                                <label class="form-label f-w-500">Published Date</label>
+                                <div class="input-group">
+                                    <input required name="published" id="published"
+                                        class="datepicker-here form-control digits" data-position="top right"
+                                        type="text" data-language="en">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="exampleFormControlTextarea4">NoticeFile:</label>
+                            <input required type="file" name="NoticeFile" id="NoticeFile">
+                        </div>
+                        <!-- <div class="btn" id="openpdf">somthing</div>
+                        <input required type="hidden" id="forfile"> -->
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

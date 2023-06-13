@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('./partials/metalinks') %>
+</head>
+
+<body class="landing-page">
+  <!-- tap on top starts-->
+  <div class="tap-top"><i data-feather="chevrons-up"></i></div>
+  <!-- tap on tap ends-->
+  <!-- page-wrapper Start-->
+  <div class="page-wrapper compact-wrapper">
+    <!-- Page Body Start-->
+    <!-- header start-->
+    <header class="landing-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-light p-0" id="navbar-example2"><a class="navbar-brand" href="javascript:void(0)">
+                <img class="img-fluid img-70 rounded-circle" src="../../upload/<%=Setting[0].image%>" alt=""></a>
+              <ul class="landing-menu nav nav-pills">
+                <li class="nav-item menu-back">back<i class="fa fa-angle-right"></i></li>
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#Service">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="#JObPosts">Job Posts</a></li>
+                <li class="nav-item"><a class="nav-link" href="#footer">About Us</a></li>
+              </ul>
+              <div class="buy-block"><a class="btn-landing btn-white" href="/SingIn" target="_blank">Sign In </a>
+                <div class="toggle-menu"><i class="fa fa-bars"></i></div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- header end-->
+    <!-- landing home start-->
+    <section class="landing-home" id="home"><img class="img-fluid bg-img-cover"
+        src="../images/landing/landing-home/home-bg.jpg" alt="">
+      <div class="container-fluid">
+        <div class="row">
+          <ul class="animat-block col-lg-6">
+            <li><img class="img-fluid" style="width:321px ; height: 227px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename1%>" alt=""></li>
+            <li><img class="img-fluid" style="width:591px ; height: 630px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename2%>" alt=""></li>
+            <li><img class="img-fluid" style="width:542px ; height: 584px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename3%>" alt=""></li>
+            <li><img class="img-fluid" style="width:262px ; height: 261px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename4%>" alt=""></li>
+
+          </ul>
+          <div class="col-lg-5">
+            <div class="landing-home-contain">
+              <div>
+                <div class="txt-warning f-40 mb-3">
+                  <div style="display: flex  !important "><img class="img-fluid rounded-circle"
+                      src="../../upload/<%=Setting[0].image%>" style="height: 50px; width: 50px;" alt="">
+                    <h4 class="ms-2">
+                      <%=Setting[0].CompnyName%>
+                    </h4>
+                  </div>
+
+                  <h2>
+                    <%=Setting[0].LandingHeading%>
+                  </h2>
+                  <h3>
+                    <%=Setting[0].LilIntro%>
+                  </h3>
+                  <p>
+                    <%=Setting[0].BrifeIntro%>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <!-- landing home end-->
+    <!-- layout section start-->
+    <section class="section-py-space layout-section" id="Service">
+      <div class="container">
+        <div class="card pt-3 row layout-block">
+          <div class="col-sm-12 wow pulse">
+            <div class="title">
+              <h2>Service We Provide<i class="fa fa-circle"></i></h2>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="card-body text-center">
+                <%TrainingType.forEach((item)=>{%>
+                  <%if(item.Status=="Active"){%>
+                    <button class="btn btn-warning example-popover mt-2 mb-2" type="button" data-bs-toggle="popover"
+                      title="" data-bs-content="And here's some amazing content. It's very engaging. Right?"
+                      data-bs-original-title="Contact us for get training Of <%=item.TrainingType%>">
+                      <%=item.TrainingType%>
+                    </button>
+                    <%}%>
+                      <%})%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--layout section end-->
+    <!--sidebar section start-->
+    <section class="section-py-space demo-section light-bg section-px-space" id="JObPosts">
+      <div class="container">
+        <div class="row layout-block">
+          <div class="col-sm-12 wow pulse">
+            <div class="title">
+              <h2>JOb Posts<i class="fa fa-circle"></i></h2>
+            </div>
+          </div>
+        </div>
+        <%JobPost.forEach((item)=>{%>
+          <div class="row demo-block">
+            <div class="job-box bg-white overflow-hidden border rounded mt-4 position-relative overflow-hidden">
+              <div class="lable text-center pb-2">
+                <ul class="list-unstyled best text-white mb-0 text-uppercase">
+                  <li class="list-inline-item"><i class="mdi mdi-star"></i></li>
+                </ul>
+              </div>
+              <div class="p-4">
+                <div class="row align-items-center">
+                  <div class="col-md-2">
+                    <div class="mo-mb-2">
+                      <img src="../../upload/<%=Setting[0].image%>" style="height: 100px; width: 100px;" alt=""
+                        class="img-fluid mx-auto d-block rounded-circle">
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div>
+                      <h5 class="f-18"><a href="#" class="text-dark">
+                          <%=item.Job_Title%>
+                        </a></h5>
+                      <p class="text-muted mb-0">
+                        <%=item.Job_Post%>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div>
+                      <p class="text-muted mb-0">Published at : <%=item.Job_Published%>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <div>
+                      <p class="text-muted mb-0 mo-mb-2">Deadline : <%=item.App_End%>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                  <a href="/ApplyForJob/<%=item.id%>" class="btn btn-primary" type="button" data-bs-original-title="" title="">Apply Now</a>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%})%>
+      </div>
+    </section>
+    <!--sidebar section end-->
+   
+  
+    <!-- unique-cards end-->
+    <!-- counter-section start-->
+    <section class="counter-sec section-py-space">
+      <div class="custom-container">
+        <div class="row counter-block">
+          <div class="col-lg-3 col-sm-6">
+            <div class="counter-box">
+              <div>
+                <div class="count-number">
+                  <h3><%=department.length%></h3>
+                </div>
+                <div class="count-detail">
+                  <h4>Departments </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="counter-box">
+              <div>
+                <div class="count-number">
+                  <h3><%=Designation.length%></h3>
+                </div>
+                <div class="count-detail">
+                  <h4>Designation</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="counter-box">
+              <div>
+                <div class="count-number">
+                  <h3><%=Branch.length%></h3>
+                </div>
+                <div class="count-detail">
+                  <h4>Branch</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-6">
+            <div class="counter-box">
+              <div>
+                <div class="count-number">
+                  <h3><%=User.length%></h3>
+                </div>
+                <div class="count-detail">
+                  <h4>Employees</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- counter-section end-->
+    <!--footer start-->
+    <section class="landing-footer section-py-space light-bg" id="footer">
+      <div class="custom-container">
+        <div class="row">
+          <div class="row align-items-center text-center" style="padding-top: 50px;">
+            <div class="col-lg-3">
+                <div class="contact-item mt-40">
+                    <div>
+                        <div class="">
+                          <h1><i class="icofont icofont-earth"></i></h1>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].web%></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="contact-item mt-40">
+                    <div>
+                        <div class="">
+                            <h1><i class="icofont icofont-mobile-phone"></i></h1>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+
+                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].mobile%></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3">
+                <div class="contact-item mt-40">
+                    <div>
+                        <div class="">
+                          <h1><i class="icofont icofont-email"></i></h1>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].email%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="contact-item mt-40">
+                    <div>
+                        <div class="">
+                        <h1><i class="icofont icofont-location-pin"></i></h1>
+                        </div>
+                    </div>
+                    <div class="contact-details">
+                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].location%></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <!--footer end-->
+  </div>
+
+  <script>
+    wow = new WOW({
+      mobile: false
+    })
+    wow.init();
+  </script>
+</body>
+
+<%- include ('./partials/script') %>
+
+</html>

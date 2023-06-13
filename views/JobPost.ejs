@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addJobPost">Add JobPost</button>
+                            </div>
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>JobPost</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>Job_Title</th>
+                                                            <th>Job Post</th>
+                                                            <th>Status</th>
+                                                            <th>Job Published Date</th>
+                                                            <th>Application end Date</th>
+                                                            <th>Options</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% JobPost.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.Job_Title %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.Job_Post %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.Status %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.Job_Published %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.App_End %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ul class="action">
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-Job_Title="<%=item.Job_Title%>"
+                                                                                    data-Job_Post="<%=item.Job_Post%>"
+                                                                                    data-Description="<%=item.Description%>"
+                                                                                    data-Status="<%=item.Status%>"
+                                                                                    data-Job_Published="<%=item.Job_Published%>"
+                                                                                    data-App_End="<%=item.App_End%>"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editJobPost"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                    href="/JobPosts/delete/<%=item.id%>"><i
+                                                                                        class="icon-trash"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>List of Applyrs</h5>
+                                </div>
+                                <div class="card-block row">
+                                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                                        <div class="table-responsive theme-scrollbar">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Id</th>
+                                                        <th scope="col">Applyr Name </th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">mobile</th>
+                                                        <th scope="col">Job_Title</th>
+                                                        <th scope="col">Resume</th>
+                                                        <th scope="col">Options</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% var i=1 %>
+                                                        <% ApplyForJob.forEach((item)=>{ %>
+                                                            <tr>
+                                                                <th scope="row">
+                                                                    <%=i++%>
+                                                                </th>
+                                                                <td>
+                                                                    <%=item.name%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=item.email%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=item.mobile%>
+                                                                </td>
+                                                                <td>
+                                                                    <%=item.Job_Title%>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="text-end">
+                                                                        <button class="btn mb-2" type="button" id="seeresume"
+                                                                        data-resume="<%=item.resume%>"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target=".model-of-addDepartment"><i
+                                                                                class="icofont icofont-open-eye"></i></button>
+                                                                    </div>
+
+                                                                </td>
+                                                                <td>
+                                                                    <ul class="action">
+                                                                        <li class="delete"><a
+                                                                                href="/ApplyForJob/delete/<%=item.id%>"><i
+                                                                                    class="icon-trash"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                            <% }) %>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add JobPost -->
+    <div class="modal fade model-of-addJobPost" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">JobPost</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newJobPost" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Job Title</Title></label>
+                            <input required name="Job_Title" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter JobPost">
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Job Post</Title></label>
+                            <input required name="Job_Post" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter JobPost">
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <label class="form-label" for="exampleFormControlTextarea4">Description</label>
+                                <textarea name="Description" class="form-control" id="exampleFormControlTextarea4"
+                                    rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label f-w-500">Status</label>
+                            <select name="Status" class="form-control btn-square">
+                                <option selected disabled>--Please Select--</option>
+                                <option value="Published">Published</option>
+                                <option value="Unpublished">Unpublished</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <div class="date-picker">
+                                <label class="form-label f-w-500">Job Published Date</label>
+                                <div class="input-group">
+                                    <input required name="Job_Published" class="datepicker-here form-control digits"
+                                        data-position="top right" type="text" data-language="en">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <div class="date-picker">
+                                <label class="form-label f-w-500">Application End Date</label>
+                                <div class="input-group">
+                                    <input required name="App_End" class="datepicker-here form-control digits"
+                                        data-position="top right" type="text" data-language="en">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit JobPost -->
+    <div class="modal fade model-of-editJobPost" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">JobPost</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newJobPost" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Job Title</Title></label>
+                            <input required name="Job_Title" class="form-control" id="Job_Title" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter JobPost">
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Job Post</Title></label>
+                            <input required name="Job_Post" class="form-control" id="Job_Post" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter JobPost">
+                        </div>
+                        <div class="mb-3">
+                            <div>
+                                <label class="form-label" for="exampleFormControlTextarea4">Description</label>
+                                <textarea name="Description" class="form-control" id="Description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label f-w-500">Status</label>
+                            <select id="Description" name="Status" class="form-control btn-square">
+                                <option selected disabled>--Please Select--</option>
+                                <option value="Published">Published</option>
+                                <option value="Unpublished">Unpublished</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <div class="date-picker">
+                                <label class="form-label f-w-500">Job Published Date</label>
+                                <div class="input-group">
+                                    <input required name="Job_Published" id="Job_Published"
+                                        class="datepicker-here form-control digits" data-position="top right"
+                                        type="text" data-language="en">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="date-picker">
+                                <label class="form-label f-w-500">Application End Date</label>
+                                <div class="input-group">
+                                    <input required name="App_End" id="App_End"
+                                        class="datepicker-here form-control digits" data-position="top right"
+                                        type="text" data-language="en">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of see Resume -->
+    <div class="modal fade model-of-addDepartment" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Resume</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                   <img src="" id="sawresume"  alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+<!-- Page Sidebar Start-->
+<div class="sidebar-wrapper">
+  <div>
+    <div class="logo-wrapper f-20"><a class="text-white"><img class="img-fluid for-light me-2"
+          src="../../upload/<%=Setting[0].image%>" style="height: 40px; width: 40px;" alt="">
+        <%=Setting[0].CompnyName%>
+      </a>
+
+      <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid">
+        </i></div>
+    </div>
+    <div class="logo-icon-wrapper"><a href="index.html">
+        <div class="icon-box-sidebar"><i data-feather="grid"></i></div>
+      </a></div>
+    <nav class="sidebar-main">
+      <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+      <div id="sidebar-menu">
+        <ul class="sidebar-links" id="simple-bar">
+          <li class="back-btn">
+            <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i>
+            </div>
+          </li>
+          <li class="menu-box">
+            <ul>
+              <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/Dashboard"><i
+                    data-feather="home"></i><span>Dashboard</span></a></li>
+            </ul>
+          </li>
+          <% if((PermRole[0].Administration[0].Add_role==1)||(PermRole[0].Administration[0].Add_Role_Permission==1)){%>
+            <li class="menu-box">
+              <ul>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                      data-feather="file-text"></i><span>Administration</span></a>
+                  <ul class="sidebar-submenu">
+                    <% if(PermRole[0].Administration[0].Add_role==1){%>
+                      <li><a href="/Role">Add Role</a></li>
+                      <%}%>
+                        <% if(PermRole[0].Administration[0].Add_Role_Permission==1){%>
+                          <li><a href="/Permission">Add Permission</a></li>
+                          <%}%>
+                  </ul>
+                </li>
+                <%}%>
+
+                  <%if((PermRole[0].Employee_Management[0].Department==1)||(PermRole[0].Employee_Management[0].PerformanceCategoryion==1)||(PermRole[0].Employee_Management[0].Branch==1)||(PermRole[0].Employee_Management[0].Manage_Employee==1)||(PermRole[0].Employee_Management[0].Warning==1)||(PermRole[0].Employee_Management[0].Termination==1)||(PermRole[0].Employee_Management[0].Promotion==1)){%>
+                    <li class="menu-box">
+                      <ul>
+                        <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                              data-feather="users"></i><span>Employe Manage</span></a>
+                          <ul class="sidebar-submenu">
+
+                            <% if(PermRole[0].Employee_Management[0].Department==1){%>
+                              <li><a href="/Department">Department</a></li>
+                              <%}%>
+                                <% if(PermRole[0].Employee_Management[0].Designation==1){%>
+                                  <li><a href="/Designation">Designation</a></li>
+                                  <%}%>
+                                    <% if(PermRole[0].Employee_Management[0].Branch==1) {%>
+                                      <li><a href="/Branch">Branch</a></li>
+                                      <%}%>
+                                        <% if(PermRole[0].Employee_Management[0].Manage_Employee==1){%>
+                                          <li><a href="/User">Manage Employee</a></li>
+                                          <%}%>
+                                            <% if(PermRole[0].Employee_Management[0].Warning==1) {%>
+                                              <li><a href="/Warning">Warning</a></li>
+                                              <%}%>
+                                                <% if(PermRole[0].Employee_Management[0].Termination==1) {%>
+                                                  <li><a href="/Termination">Termination</a></li>
+                                                  <%}%>
+                                                    <% if(PermRole[0].Employee_Management[0].Promotion==1) {%>
+                                                      <li><a href="/Promotion">Promotion</a></li>
+                                                      <%}%>
+
+                          </ul>
+                        </li>
+
+                      </ul>
+                    </li>
+                    <%}%>
+
+                      <li class="menu-box">
+                        <ul>
+                          <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i
+                                data-feather="edit"></i><span>Leaves Holidays</span></a>
+                            <ul class="sidebar-submenu">
+                              <% if((PermRole[0].Leave_Management[0].PublicHoliday==1)||(PermRole[0].Leave_Management[0].WeeklyHoliday==1))
+                                {%>
+                                <li><a class="submenu-title" href="javascript:void(0)">Holiday<span class="sub-arrow"><i
+                                        class="fa fa-angle-right"></i></span></a>
+                                  <ul class="nav-sub-childmenu submenu-content">
+                                    <% if(PermRole[0].Leave_Management[0].PublicHoliday==1) {%>
+                                      <li><a href="/PublicHoliday">Public Holiday</a></li>
+                                      <%}%>
+                                        <% if(PermRole[0].Leave_Management[0].WeeklyHoliday==1) {%>
+                                          <li><a href="/WeeklyHoliday">Weekly Holiday</a></li>
+                                          <%}%>
+                                  </ul>
+                                </li>
+                                <%}%>
+                                  <%if((PermRole[0].Leave_Management[0].ApplyforLeave==1)||(PermRole[0].Leave_Management[0].ManageLeave==1)){%>
+                                    <li><a class="submenu-title" href="javascript:void(0)">Leave<span
+                                          class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
+                                      <ul class="nav-sub-childmenu submenu-content">
+
+                                        <% if(PermRole[0].Leave_Management[0].ApplyforLeave==1) {%>
+                                          <li><a href="/ApplyLeave">Apply For Leave</a></li>
+                                          <%}%>
+                                            <% if(PermRole[0].Leave_Management[0].ManageLeave==1) {%>
+                                              <li><a href="/ManageLeave">Manage Leave</a></li>
+                                              <%}%>
+                                      </ul>
+                                    </li>
+                                    <%}%>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <% if(PermRole[0].Attendance[0].ManageWorkShift==1) {%>
+                        <li class="menu-box">
+                          <ul>
+                            <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="/workShift"><i
+                                  data-feather="file-text"></i><span>Workshift</span></a></li>
+                          </ul>
+                        </li>
+                        <%}%>
+
+                          <% if((PermRole[0].Payroll[0].Allowance==1)||(PermRole[0].Payroll[0].TaxRuleSetup==1)
+                            ||(PermRole[0].Payroll[0].TaxRuleSetup==1)
+                            ||(PermRole[0].Payroll[0].Deduction==1)||(PermRole[0].Payroll[0].GenerateSalarySheet==1)||(PermRole[0].Payroll[0].HourlyPayGrade==1)
+                            ){%>
+                            <li class="menu-box">
+                              <ul>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title"
+                                    href="javascript:void(0)"><i data-feather="activity"></i><span>Payroll</span></a>
+                                  <ul class="sidebar-submenu">
+
+                                    <% if(PermRole[0].Payroll[0].TaxRuleSetup==1) {%>
+                                      <li><a href="/TaxRuleSetup">Tax Rule Setup</a></li>
+                                      <%}%>
+                                        <!-- <li><a href="/LateConfiguration">Late Configuration</a></li> -->
+
+                                        <% if(PermRole[0].Payroll[0].Allowance==1) {%>
+                                          <li><a href="/Allowanace">Allowanace</a></li>
+                                          <%}%>
+                                            <% if(PermRole[0].Payroll[0].Deduction==1) {%>
+                                              <li><a href="/Deduction">Deduction</a></li>
+                                              <%}%>
+                                                <% if(PermRole[0].Payroll[0].GenerateSalarySheet==1) {%>
+                                                  <li><a href="/EmployeePayslip">Generate Salary Sheet</a></li>
+                                                  <%}%>
+                                                    <% if(PermRole[0].Payroll[0].HourlyPayGrade==1) {%>
+                                                      <li><a href="/HourlyPayGrade">Hourly Pay Grade</a></li>
+                                                      <li><a href="/monthlyPayGrade">monthly Pay Grade</a></li>
+                                                      <%}%>
+
+                                                        <!-- <li><a class="submenu-title" href="javascript:void(0)">Report<span
+                                                    class="sub-arrow"><i class="fa fa-angle-right"></i></span></a>
+                                                <ul class="nav-sub-childmenu submenu-content">
+                                                  <% if(PermRole[0].Payroll[0].PaymentHistory==1) {%>
+                                                    <li><a href="/DailyAttendance">Payment History</a></li>
+                                                    <%}%>
+                                                      <% if(PermRole[0].Payroll[0].MyPayroll==1) {%>
+                                                        <li><a href="/MyPayroll">My Payroll</a></li>
+                                                        <%}%>
+                                                </ul>
+                                              </li>  -->
+                                                        <% if((PermRole[0].Payroll[0].BonusSetting==1)||(PermRole[0].Payroll[0].GenerateBonus==1))
+                                                          {%>
+
+                                                          <% if(PermRole[0].Payroll[0].BonusSetting==1) {%>
+                                                            <li><a href="/BonusSetting">Bonus Setting</a></li>
+                                                            <%}%>
+
+
+                                                              <%}%>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <%}%>
+                              <% if((PermRole[0].Performance[0].PerformanceCategory==1)||(PermRole[0].Performance[0].EmployeePerformance==1)||(PermRole[0].Performance[0].PerformanceSummaryReport==1))
+                                {%>
+                                <li class="menu-box">
+                                  <ul>
+                                    <li class="sidebar-list"><a class="sidebar-link sidebar-title"
+                                        href="javascript:void(0)"><i
+                                          data-feather="arrow-up-right"></i><span>Performance</span></a>
+                                      <ul class="sidebar-submenu">
+                                        <% if(PermRole[0].Performance[0].PerformanceCategory==1) {%>
+                                          <li><a href="/PerformanceCategory">Performance Category</a></li>
+                                          <%}%>
+                                            <% if(PermRole[0].Performance[0].EmployeePerformance==1) {%>
+                                              <li><a href="/EmployeePerformance">Employee Performance</a></li>
+                                              <%}%>
+                                                <% if(PermRole[0].Performance[0].PerformanceSummaryReport==1) {%>
+
+                                                  <li><a href="/PerformanceReport">Summary Report</a></li>
+
+                                                  <%}%>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <%}%>
+                                  <% if((PermRole[0].Recruitment[0].JobPost==1)||(PermRole[0].Recruitment[0].JobCandidate==1))
+                                    {%>
+                                    <li class="menu-box">
+                                      <ul>
+                                        <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                            href="/JobPost"><i data-feather="arrow-down-left"></i><span>Recruitement
+                                              job</span></a>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <%}%>
+                                      <% if((PermRole[0].Training[0].TrainingType==1)||(PermRole[0].Training[0].TrainingReport==1))
+                                        {%>
+                                        <li class="menu-box">
+                                          <ul>
+                                            <li class="sidebar-list"><a class="sidebar-link sidebar-title"
+                                                href="javascript:void(0)"><i
+                                                  data-feather="arrow-up-circle"></i><span>Training</span></a>
+                                              <ul class="sidebar-submenu">
+                                                <% if(PermRole[0].Training[0].TrainingType==1) {%>
+                                                  <li><a href="/TrainingType">Training Type</a></li>
+                                                  <%}%>
+                                                    <% if(PermRole[0].Training[0].TrainingReport==1) {%>
+                                                      <li><a href="/EmployeeTraining">Training List</a></li>
+                                                      <%}%>
+                                              </ul>
+                                            </li>
+                                          </ul>
+                                        </li>
+                                        <%}%>
+                                          <% if(PermRole[0].Award[0].Award==1) {%>
+                                            <li class="menu-box">
+                                              <ul>
+                                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                                    href="/Award"><i data-feather="award"></i><span>Award</span></a>
+                                                </li>
+                                              </ul>
+                                            </li>
+                                            <%}%>
+                                              <% if(PermRole[0].Award[0].Award==1) {%>
+                                                <li class="menu-box">
+                                                  <ul>
+                                                    <li class="sidebar-list"><a
+                                                        class="sidebar-link sidebar-title link-nav" href="/Notice"><i
+                                                          data-feather="file-text"></i><span>Notice</span></a></li>
+                                                  </ul>
+                                                </li>
+                                                <%}%>
+                                                  <% if(PermRole[0].Settings[0].GeneralSetting==1) {%>
+
+                                                    <li class="menu-box">
+                                                      <ul>
+                                                        <li class="sidebar-list"><a
+                                                            class="sidebar-link sidebar-title link-nav"
+                                                            href="/Setting"><i
+                                                              data-feather="settings"></i><span>Setting</span></a></li>
+                                                      </ul>
+                                                    </li>
+                                                    <%}%>
+              </ul>
+            </li>
+        </ul>
+      </div>
+      <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+    </nav>
+  </div>
+</div>
+<!-- Page Sidebar Ends-->

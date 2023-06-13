@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addDeduction">Add Deduction</button>
+                            </div>
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>Deduction</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>Deduction Name</th>
+                                                            <th>Deduction Type</th>
+                                                            <th>Percentage of Basic</th>
+                                                            <th>Limit Per Month</th>
+                                                            <th>Options</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% Deduction.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.DeductionName %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.DeductionType %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.profbasic %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.limite %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ul class="action">
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-name="<%=item.DeductionName%>"
+                                                                                    data-DeductionType="<%=item.DeductionType%>"
+                                                                                    data-profbasic="<%=item.profbasic%>"
+                                                                                    data-limite="<%=item.limite%>"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editDeduction"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                    href="/Deductions/delete/<%=item.id%>"><i
+                                                                                        class="icon-trash"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add Deduction -->
+    <div class="modal fade model-of-addDeduction" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Deduction</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newDeduction" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Deduction Name</label>
+                            <input required name="DeductionName" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Deduction">
+                        </div>
+                        
+                            <div class="mb-3">
+                                <label class="form-label f-w-500">Deduction Type</label>
+                                <select name="DeductionType" class="form-control btn-square">
+                                    <option selected disabled>--Please Select--</option>
+                                    <option value="Percentage">Percentage</option>
+                                    <option value="Fixed">Fixed</option>
+                                </select>
+                            </div>
+                  
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Percentage of Basic</label>
+                            <input required name="profbasic" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="if Type is Percentage">
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Limit Per Month</label>
+                            <input required name="limite" class="form-control" id="exampleInputEmail1" type="text"
+                                aria-describedby="emailHelp" placeholder="/-">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit Deduction -->
+    <div class="modal fade model-of-editDeduction" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Deduction</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newDeduction" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Deduction Name</label>
+                            <input required name="DeductionName" class="form-control" id="DeductionName" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Deduction">
+                        </div>
+                      
+                            <div class="mb-3">
+                                <label class="form-label f-w-500">Deduction Type</label>
+                                <select name="DeductionType" class="form-control btn-square">
+                                    <option selected disabled>--Please Select--</option>
+                                    <option value="Percentage">Percentage</option>
+                                    <option value="Fixed">Fixed</option>
+                                </select>
+                            </div>
+                        
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Percentage of Basic</label>
+                            <input required name="profbasic" class="form-control" id="profbasic" type="text"
+                                aria-describedby="emailHelp" placeholder="if Type is Percentage">
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Limit Per Month</label>
+                            <input required name="limite" class="form-control" id="limite" type="text"
+                                aria-describedby="emailHelp" placeholder="/-">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

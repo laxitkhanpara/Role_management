@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+                            <%if(PermRole[0].Role==1){%>
+                                <!-- Small modal-->
+                                <div class="text-end">
+                                    <a class="btn btn-primary mb-2" type="button" href="/GenrateEmployeePayslip"
+                                        data-bs-target=".model-of-addUser">Genrate Employee Payslip</a>
+                                </div>
+                                <%}%>
+
+
+                                    <div class="row">
+                                        <!-- Zero Configuration  Starts-->
+                                        <div class="col-sm-12">
+                                            <div class="card">
+                                                <div class="card-header pb-0">
+                                                    <h4>User</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="table-responsive theme-scrollbar">
+                                                        <table class="display" id="basic-1">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S/l</th>
+
+                                                                    <th>Name</th>
+                                                                    <th>Department</th>
+                                                                    <th>Contect</th>
+                                                                    <th>EmpNum</th>
+                                                                    <th>Dates</th>
+                                                                    <th>Opration</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                <% var i=1 %>
+                                                                    <% SalarySlip.forEach((item)=>{ %>
+
+                                                                        <tr class="align-middle">
+                                                                            <th scope="row">
+                                                                                <%=i++%>
+                                                                            </th>
+
+                                                                            <td>
+                                                                                <%=item.Username %>
+
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=item.Department %>
+                                                                                    <br><span
+                                                                                        class="text-muted">Designation:
+                                                                                        <%=item.Designation %>
+                                                                                    </span>
+                                                                                    <br><span class="text-muted">branch:
+                                                                                        <%=item.Branch %>
+                                                                                    </span>
+                                                                            </td>
+                                                                            <td>
+                                                                                email:<%=item.email %>
+                                                                                    <br>
+                                                                                    mobile:<%=item.Mobilenum %>
+                                                                            </td>
+                                                                            <td>
+                                                                                <%=item.EmpId %>
+
+                                                                            </td>
+                                                                            <td>
+                                                                                <br><span class="text-muted">From
+                                                                                    Date&nbsp:<%=item.FromDate.toDateString("en-US")
+                                                                                        %></span>
+                                                                                <br><span class="text-muted">To
+                                                                                    Date&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp:<%=item.ToDate.toDateString("en-US")
+                                                                                        %></span>
+                                                                            </td>
+                                                                            <td>
+                                                                                <ul class="action">
+                                                                                    <li class="delete"><a
+                                                                                            href="/Getslip/<%=item.id%>"><i
+                                                                                                class="icofont icofont-open-eye"></i></a>
+                                                                                    </li>
+                                                                                    <%if(PermRole[0].Role==1){%>
+                                                                                        <li class="delete"><a
+                                                                                                href="/Users/delete/<%=item.id%>"><i
+                                                                                                    class="icon-trash"></i></a>
+                                                                                        </li>
+                                                                                        <%}%>
+                                                                                </ul>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <% }) %>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

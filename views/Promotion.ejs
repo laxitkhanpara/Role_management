@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addPromotion">Add Promotion</button>
+                            </div>
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>Promotion</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>username</th>
+                                                            <th>Promotion Type</th>
+                                                            <th>Subject</th>
+                                                            <th>Promotion By</th>
+                                                            <th>Promotion Date</th>
+                                                            <th>Options</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% Promotion.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.username %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.PromotionType %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.Subject %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.PromotionBy %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.PromotionDate %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ul class="action">
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-username="<%=item.username%>"
+                                                                                    data-PromotionType="<%=item.PromotionType%>"
+                                                                                    data-Subject="<%=item.Subject%>"
+                                                                                    data-PromotionBy="<%=item.PromotionBy%>"
+                                                                                    data-PromotionDate="<%=item.PromotionDate%>"
+                                                                                    data-Description="<%=item.Description%>"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editPromotion"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                    href="/Promotions/delete/<%=item.id%>"><i
+                                                                                        class="icon-trash"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add Promotion -->
+    <div class="modal fade model-of-addPromotion" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Promotion</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newPromotion" method="post" class="theme-form">
+                        
+                        <div class="container-fluid">
+
+                            <div class="edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Details</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+    
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Employee Name</label>
+                                                    <select name="username" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% User.forEach( (item)=>{ %>
+                                                            <option value="<%=item.username %>">
+                                                                <%=item.username %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Department</label>
+                                                    <select name="Department" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% department.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Department %>">
+                                                                <%=item.Department %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Designation</label>
+                                                    <select name="Designation" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Designation.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Designation %>">
+                                                                <%=item.Designation %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Branch</label>
+                                                    <select name="Branch" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Branch.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Branch %>">
+                                                                <%=item.Branch %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0" for="exampleInputEmail1">Salary
+                                                        </label>
+                                                    <input required name="Salary" class="form-control" type="text"
+                                                        placeholder="Enter PromotionType">
+                                                </div>              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Promoted Details</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                
+                                                <div class="mb-3">
+                                                    <div class="date-picker">
+                                                        <label class="form-label f-w-500">Promotion Date</label>
+                                                        <div class="input-group">
+                                                            <input required name="PromotionDate"
+                                                                class="datepicker-here form-control digits" type="text"
+                                                                data-language="en">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Promotion Department</label>
+                                                    <select name="PromotionDepartment" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% department.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Department %>">
+                                                                <%=item.Department %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Promotion Designation</label>
+                                                    <select name="PromotionDesignation" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Designation.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Designation %>">
+                                                                <%=item.Designation %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Promotion Branch</label>
+                                                    <select name="PromotionBranch" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Branch.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Branch %>">
+                                                                <%=item.Branch %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0" for="exampleInputEmail1">Promotion Salary
+                                                        </label>
+                                                    <input required name="PromotionSalary" class="form-control" type="text"
+                                                        placeholder="Enter PromotionType">
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                        </div>
+                    </form>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit Promotion -->
+    <div class="modal fade model-of-editPromotion" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Promotion</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formaction" method="post" class="theme-form">
+                        
+                        <div class="container-fluid">
+
+                            <div class="edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Promotion</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+    
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Employee Name</label>
+                                                    <select id="empname" name="username" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% User.forEach( (item)=>{ %>
+                                                            <option value="<%=item.username %>">
+                                                                <%=item.username %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+    
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0" for="exampleInputEmail1">Promotion
+                                                        Type</label>
+                                                    <input required id="wrtyp" name="PromotionType" class="form-control" type="text"
+                                                        placeholder="Enter PromotionType">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0"
+                                                        for="exampleInputEmail1">Subject</label>
+                                                    <input required id="sub" name="Subject" class="form-control" type="text"
+                                                        placeholder="Enter PromotionType">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Promotion By</label>
+                                                    <select id="wrby" name="PromotionBy" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Role.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Role_Name %>">
+                                                                <%=item.Role_Name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Description</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="mb-3">
+                                                        <div class="date-picker">
+                                                            <label class="form-label f-w-500">Promotion Date</label>
+                                                            <div class="input-group">
+                                                                <input required id="wrdate" name="PromotionDate"
+                                                                    class="datepicker-here form-control digits" type="text"
+                                                                    data-language="en">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="date-picker">
+                                                            <label class="form-label f-w-500">Notice Date</label>
+                                                            <div class="input-group">
+                                                                <input required name="NoticeDate"
+                                                                    class="datepicker-here form-control digits" type="text"
+                                                                    data-language="en">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <label class="form-label" for="exampleFormControlTextarea4"></label>
+                                                        <textarea name="Description" class="form-control" id="wrDescription"
+                                                            rows="3"></textarea>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Done</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

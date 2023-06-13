@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addEmployeeTraining">Add EmployeeTraining</button>
+                            </div>
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>EmployeeTraining</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>Employee Training</th>
+                                                            <th>username</th>
+                                                            <th>From_Date</th>
+                                                            <th>To_Date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% EmployeeTraining.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.EmployeeTraining %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.username %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.From_Date %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.To_Date %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ul class="action">
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-name="<%=item.EmployeeTraining%>"
+                                                                                    data-username="<%=item.username%>"
+                                                                                    data-From_Date="<%=item.From_Date%>"
+                                                                                    data-To_Date="<%=item.To_Date%>"
+                                                                                
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editEmployeeTraining"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                    href="/EmployeeTrainings/delete/<%=item.id%>"><i
+                                                                                        class="icon-trash"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add EmployeeTraining -->
+    <div class="modal fade model-of-addEmployeeTraining" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">EmployeeTraining</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newEmployeeTraining" method="post" class="theme-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label f-w-500">EmployeeTraining</label>
+                                    <select name="EmployeeTraining" class="form-control btn-square">
+                                        <option selected disabled>--Please Select--</option>
+                                        <% TrainingType.forEach( (item)=>{ %>
+                                            <% if(item.Status=="Active") {%>
+                                            <option value="<%=item.TrainingType %>">
+                                                <%=item.TrainingType %>
+                                            </option>
+                                            <%}%>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label f-w-500">Employee Name</label>
+                                    <select name="username" class="form-control btn-square">
+                                        <option selected disabled>--Please Select--</option>
+                                        <% User.forEach( (item)=>{ %>
+                                            <option value="<%=item.username %>">
+                                                <%=item.username %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div class="date-picker">
+                                        <label class="form-label f-w-500">From Date </label>
+                                        <div class="input-group">
+                                            <input required name="From_Date" class="datepicker-here form-control digits" type="text"
+                                                data-language="en">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div class="date-picker">
+                                        <label class="form-label f-w-500">To Date</label>
+                                        <div class="input-group">
+                                            <input required name="To_Date" class="datepicker-here form-control digits" type="text"
+                                                data-language="en">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div>
+                                        <label class="form-label" for="exampleFormControlTextarea4">Description</label>
+                                        <textarea name="Description" class="form-control" id="Description"
+                                            rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="exampleFormControlTextarea4">Certificate of Training</label>
+                                    <input required type="file" name="Certificate" id="image-input">
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit EmployeeTraining -->
+    <div class="modal fade model-of-editEmployeeTraining" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">EmployeeTraining</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newEmployeeTraining" method="post" class="theme-form" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label f-w-500">EmployeeTraining</label>
+                                    <select name="EmployeeTraining" class="form-control btn-square" id="EmployeeTraining">
+                                        <option selected disabled>--Please Select--</option>
+                                        <% TrainingType.forEach( (item)=>{ %>
+                                            <% if(item.Status=="Active") {%>
+                                            <option value="<%=item.TrainingType %>">
+                                                <%=item.TrainingType %>
+                                            </option>
+                                            <%}%>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label f-w-500">Employee Name</label>
+                                    <select name="username" class="form-control btn-square" id="username">
+                                        <option selected disabled>--Please Select--</option>
+                                        <% User.forEach( (item)=>{ %>
+                                            <option value="<%=item.username %>">
+                                                <%=item.username %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div class="date-picker">
+                                        <label class="form-label f-w-500">From Date </label>
+                                        <div class="input-group">
+                                            <input required name="From_Date" id="From_Date" class="datepicker-here form-control digits" type="text"
+                                                data-language="en">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div class="date-picker">
+                                        <label class="form-label f-w-500">To Date</label>
+                                        <div class="input-group">
+                                            <input required name="To_Date" id="To_Date" class="datepicker-here form-control digits" type="text"
+                                                data-language="en">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <div>
+                                        <label class="form-label" for="exampleFormControlTextarea4">Description</label>
+                                        <textarea name="Description" class="form-control" id="Description"
+                                            rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="exampleFormControlTextarea4">Certificate of Training</label>
+                                    <input required type="file" name="Certificate" id="Certificate">
+                                </div>
+                            </div>
+
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

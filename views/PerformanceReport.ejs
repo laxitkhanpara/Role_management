@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <form action="">
+                                    <div class="col-sm-12">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4>PerformanceReport</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="mb-3">
+                                                            <div class="date-picker">
+                                                                <label class="form-label f-w-500">From
+                                                                    Date</label>
+                                                                <div class="input-group">
+                                                                    <input required name="Month" id="stdate" class="datepicker-here form-control digits" type="text" data-language="en"
+                                                                    data-min-view="months" data-view="months" data-date-format="MM yyyy">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <div class="mb-3">
+                                                            <div class="date-picker">
+                                                                <label class="form-label f-w-500">To
+                                                                    Date</label>
+                                                                <div class="input-group">
+                                                                    <input required name="Month" id="endate" class="datepicker-here form-control digits" type="text" data-language="en"
+                                                                    data-min-view="months" data-view="months" data-date-format="MM yyyy">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="mt-4">
+                                                            <button class="btn btn-pill btn-primary btn-air-primary" id="filter"
+                                                                type="button" data-bs-original-title=""
+                                                                title="">Filter</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+
+                                        <div id="stock_report_table">
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

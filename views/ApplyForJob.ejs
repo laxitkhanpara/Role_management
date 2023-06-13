@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+
+        <div class="page-body-wrapper">
+
+            <div class="row">
+                <img src="" alt="" class="img-fluid mx-auto d-block bg-image">
+                <div class="bg-image"
+                    style="background-image: url('../images/GetJob.jpg');background-attachment: fixed">
+                    <div class="mr-auto mx-auto col-lg-10 col-md-10">
+
+
+                        <div class="job-detail text-center job-single border rounded mt-4 p-4 card">
+                            <h4 class=""><a href="#" class="text-dark">
+                                    <%=JobPost[0].Job_Title%>
+                                </a></h4>
+                            <h2>
+                                <%=JobPost[0].Job_Post%>
+                            </h2>
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item mr-3">
+                                    <p class="text-muted mb-2"><i class="fa fa-calendar  mr-1"></i>Published at :
+                                        <%=JobPost[0].Job_Published%>
+                                    </p>
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <p class="text-muted mb-2"><i class="fa fa-calendar-times mr-1"></i>Deadline :
+                                        <%=JobPost[0].App_End%>
+                                    </p>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h5 class="text-dark mt-4">Job Description :</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="job-detail border rounded mt-2 p-4 card">
+                                    <div class="job-detail-desc">
+                                        <%=JobPost[0].Description%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 class="text-dark mt-4">Apply for this Job:</h4>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="job-detail border rounded mt-2 p-4 card">
+                                    <form action="/ApplyForJob" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="Job_Title" value="<%=JobPost[0].Job_Title%>">
+                                        <input type="hidden" name="_token" value="">
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Name</label>
+                                                    <input name="name" value="" type="text" class="form-control resume"
+                                                        placeholder="Applicant Name">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Email</label>
+                                                    <input name="email" value="" type="email"
+                                                        class="form-control resume" placeholder="Applicant Email">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Phone No</label>
+                                                    <input name="mobile" value="" type="text"
+                                                        class="form-control resume" placeholder="Phone No">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group app-label">
+                                                    <label class="text-muted">Attach Resume</label>
+                                                    <input name="resume" type="file" class="form-control resume"
+                                                        placeholder="Resume">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <div class="form-group app-label">
+                                                    <label>Cover Letter :</label>
+                                                    <textarea name="coverLetter" id="addition-information" rows="4"
+                                                        class="form-control resume"
+                                                        placeholder="Write Something About You"></textarea>
+                                                </div>
+
+                                                <button class="btn btn-pill btn-primary btn-air-light" type="submit"
+                                                    data-bs-original-title="" title="">Apply</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

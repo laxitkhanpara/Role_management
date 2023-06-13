@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <!-- Small modal-->
+                        <div class="text-end">
+                            <a class="btn btn-primary mb-2" type="button" id="getpdf"
+                                data-bs-target=".model-of-addUser">Genrate pdf</a>
+                        </div>
+                        <div class="container-fluid">
+
+                            <div class="container mt-5 mb-5">
+                                <div class="row">
+                                    <div class="col-md-12" id="Salaryslippdf">
+                                        <div class="text-center lh-1 mb-2">
+                                            <h6 class="fw-bold">Payslip</h6> <span class="fw-normal"><%=SalarySlip[0].FromDate.toDateString("en-US") %> To <%=SalarySlip[0].ToDate.toDateString("en-US") %></span>
+                                        </div>
+                                        <div class="d-flex justify-content-end"> <span>Working Branch:
+                                                <%=SalarySlip[0].Branch%>
+                                            </span> </div>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="empcode"> <span class="fw-bolder">EMP Code</span>
+                                                            <%=SalarySlip[0].EmpId%>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="usname"> <span class="fw-bolder">EMP Name</span><small
+                                                                class="ms-3">
+                                                                <%=SalarySlip[0].Username%>
+                                                            </small> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="Branch"> <span class="fw-bolder">Branch</span> <small
+                                                                class="ms-3">
+                                                                <%=SalarySlip[0].Branch%>
+                                                            </small> </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="nod"> <span class="fw-bolder">NOD</span> <small
+                                                                class="ms-3">
+                                                                <%=SalarySlip[0].nod%>
+                                                            </small> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div id="email"> <span class="fw-bolder">Email</span> <small
+                                                                class="ms-3">
+                                                                <%=SalarySlip[0].email%>
+                                                            </small></small> </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div id="Designation"> <span
+                                                                class="fw-bolder">Designation</span> <small
+                                                                class="ms-3">
+                                                                <%=SalarySlip[0].Designation%>
+                                                            </small></small> </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <table class="mt-4 table table-bordered">
+                                                <thead class="bg-dark text-white">
+                                                    <tr>
+                                                        <th scope="col" class="text-warning">Names</th>
+                                                        <th scope="col" class="text-warning">Amount</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tablbody">
+                                                    <tr>
+                                                        <th scope="row">TotalHours</th>
+                                                        <td>
+                                                            <%=SalarySlip[0].TotalHours%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Amount by Hour</th>
+                                                        <td>
+                                                            <%=SalarySlip[0].AmountbyHour%>
+                                                        </td>
+                                                    </tr>
+
+                                                    <%SalarySlip[0].Bonus.forEach((item)=>{%>
+                                                        <tr class="border-top">
+                                                            <th scope="row">
+                                                                <%=item.Bonus_Name%>
+                                                            </th>
+                                                            <td>
+                                                                <%=item.Bonus_Amount%>
+                                                            </td>
+                                                        </tr>
+                                                        <%})%>
+                                                        <%SalarySlip[0].Allowanace.forEach((item)=>{%>
+                                                            <tr class="border-top">
+                                                                <th scope="row">
+                                                                    <%=item.Allowanace_Name%>
+                                                                </th>
+                                                                <td>
+                                                                    <%=item.Allowanace_Amount%>
+                                                                </td>
+                                                            </tr>
+                                                            <%})%>
+
+                                                            <%SalarySlip[0].Deduction.forEach((item)=>{%>
+                                                                <tr class="border-top">
+                                                                    <th scope="row">
+                                                                        <%=item.Deduction_Name%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.Deduction_Amount%>
+                                                                    </td>
+                                                                </tr>
+                                                                <%})%>
+                                                            <tr class="border-top">
+                                                                <th scope="row">Tax Amount</th>
+                                                                <td>
+                                                                    <%=SalarySlip[0].Tax_Amount%>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="border-top">
+                                                                <th scope="row">Net Amount</th>
+                                                                <td>
+                                                                    <%=netSalary%>
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

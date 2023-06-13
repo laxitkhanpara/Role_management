@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+                            <%if(PermRole[0].Role == 1){%>
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addWarning">Add Warning</button>
+                            </div>
+                            <%}%>
+
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>Warning</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>username</th>
+                                                            <th>Warning Type</th>
+                                                            <th>Subject</th>
+                                                            <th>Warning By</th>
+                                                            <th>Warning Date</th>
+                                                            <th>Options</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% Warning.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.username %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.WarningType %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.Subject %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.WarningBy %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.WarningDate %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <ul class="action">
+                                                                            <%if(PermRole[0].Role == 1){%>
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-username="<%=item.username%>"
+                                                                                    data-WarningType="<%=item.WarningType%>"
+                                                                                    data-Subject="<%=item.Subject%>"
+                                                                                    data-WarningBy="<%=item.WarningBy%>"
+                                                                                    data-WarningDate="<%=item.WarningDate%>"
+                                                                                    data-Description="<%=item.Description%>"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editWarning"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                    href="/Warnings/delete/<%=item.id%>"><i
+                                                                                        class="icon-trash"></i></a>
+                                                                            </li>
+                                                                            <%}else{%>
+                                                                                <h6>disable</h6>
+                                                                            <%}%>
+                                                                        </ul>
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add Warning -->
+    <div class="modal fade model-of-addWarning" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Warning</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newWarning" method="post" class="theme-form">
+                        
+                        <div class="container-fluid">
+
+                            <div class="edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Warning</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+    
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Employee Name</label>
+                                                    <select name="username" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% User.forEach( (item)=>{ %>
+                                                            <option value="<%=item.username %>">
+                                                                <%=item.username %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+    
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0" for="exampleInputEmail1">Warning
+                                                        Type</label>
+                                                    <input name="WarningType" class="form-control" type="text"
+                                                        placeholder="Enter WarningType">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0"
+                                                        for="exampleInputEmail1">Subject</label>
+                                                    <input name="Subject" class="form-control" type="text"
+                                                        placeholder="Enter WarningType">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Warning By</label>
+                                                    <select name="WarningBy" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Role.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Role_Name %>">
+                                                                <%=item.Role_Name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <div class="date-picker">
+                                                        <label class="form-label f-w-500">Warning Date</label>
+                                                        <div class="input-group">
+                                                            <input name="WarningDate"
+                                                                class="datepicker-here form-control digits" type="text"
+                                                                data-language="en">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Description</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div>
+                                                        <label class="form-label" for="exampleFormControlTextarea4"></label>
+                                                        <textarea name="Description" class="form-control" id="exampleFormControlTextarea4"
+                                                            rows="3"></textarea>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit Warning -->
+    <div class="modal fade model-of-editWarning" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">Warning</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formaction" method="post" class="theme-form">
+                        
+                        <div class="container-fluid">
+
+                            <div class="edit-profile">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Warning</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+    
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Employee Name</label>
+                                                    <select id="empname" name="username" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% User.forEach( (item)=>{ %>
+                                                            <option value="<%=item.username %>">
+                                                                <%=item.username %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+    
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0" for="exampleInputEmail1">Warning
+                                                        Type</label>
+                                                    <input id="wrtyp" name="WarningType" class="form-control" type="text"
+                                                        placeholder="Enter WarningType">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="col-form-label pt-0"
+                                                        for="exampleInputEmail1">Subject</label>
+                                                    <input id="sub" name="Subject" class="form-control" type="text"
+                                                        placeholder="Enter WarningType">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label f-w-500">Warning By</label>
+                                                    <select id="wrby" name="WarningBy" class="form-control btn-square">
+                                                        <option selected disabled>--Please Select--</option>
+                                                        <% Role.forEach( (item)=>{ %>
+                                                            <option value="<%=item.Role_Name %>">
+                                                                <%=item.Role_Name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <div class="date-picker">
+                                                        <label class="form-label f-w-500">Warning Date</label>
+                                                        <div class="input-group">
+                                                            <input id="wrdate" name="WarningDate"
+                                                                class="datepicker-here form-control digits" type="text"
+                                                                data-language="en">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="card">
+                                            <div class="card-header pb-0">
+                                                <h4 class="card-title mb-0">Description</h4>
+                                                <div class="card-options"><a class="card-options-collapse" href="#"
+                                                        data-bs-toggle="card-collapse"><i
+                                                            class="fe fe-chevron-up"></i></a><a
+                                                        class="card-options-remove" href="#"
+                                                        data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div>
+                                                        <label class="form-label" for="exampleFormControlTextarea4"></label>
+                                                        <textarea name="Description" class="form-control" id="wrDescription"
+                                                            rows="3"></textarea>
+                                                    </div>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+    
+    
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Done</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>

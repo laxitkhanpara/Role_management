@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ('./partials/metalinks') %>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <%- include ('./partials/header') %>
+            <div class="page-body-wrapper">
+
+                <%- include ('./partials/sidebar') %>
+                    <!-- Container-fluid starts-->
+                    <div class="page-body">
+                        <div class="container-fluid">
+                            <%if(PermRole[0].Role == 1){%>
+                            <!-- Small modal-->
+                            <div class="text-end">
+                                <button class="btn btn-primary mb-2" type="button" data-bs-toggle="modal"
+                                    data-bs-target=".model-of-addEmployeePerformance">Add EmployeePerformance</button>
+                            </div>
+                            <%}%>
+                        </div>
+                            <div class="row">
+                                <!-- Zero Configuration  Starts-->
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-header pb-0">
+                                            <h4>EmployeePerformance</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive theme-scrollbar">
+                                                <table class="display" id="basic-1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/l</th>
+                                                            <th>Username</th>
+                                                            <th>Month</th>
+                                                            <th>Rating</th>
+                                                            <th>Options</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <% var i=1 %>
+                                                            <% EmployeePerformance.forEach((item)=>{ %>
+
+                                                                <tr class="align-middle">
+                                                                    <th scope="row">
+                                                                        <%=i++%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%=item.username %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%=item.Month %>
+                                                                    </td>
+                                                                    <td>
+                                                                        <%if(item.rating==1){%>
+                                                                            <h4><i class="icofont icofont-star"></i></h4>
+                                                                            <%} else if(item.rating==2){%>
+                                                                                <h4><i class="icofont icofont-star"></i><i class="icofont icofont-star"></i></h4>
+                                                                                <%} else if(item.rating==3){%>
+                                                                                <h4><i class="icofont icofont-star"></i><i class="icofont icofont-star"></i><i class="icofont icofont-star"></i></h4>
+
+                                                                                <%} else{%>
+                                                                                    <h4><i class="icofont icofont-star"></i><i class="icofont icofont-star"></i><i class="icofont icofont-star"></i><i class="icofont icofont-star"></i></h4>
+
+                                                                                <%}%>
+                                                                    
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <%if(PermRole[0].Role == 1){%>
+                                                                        <ul class="action">
+                                                                            <li class="edit"> <a id="editData"
+                                                                                    data-id="<%=item.id%>"
+                                                                                    data-name="<%=item.EmployeePerformance%>"
+                                                                                    data-bs-toggle="modal"
+                                                                                    data-bs-target=".model-of-editEmployeePerformance"><i
+                                                                                        class="icon-pencil-alt"></i></a>
+                                                                            </li>
+                                                                            <li class="delete"><a
+                                                                                href="/EmployeePerformances/delete/<%=item.id%>"><i
+                                                                                class="icon-trash"></i></a>
+                                                                            </li>
+                                                                        </ul>
+                                                                        <%}else{%>
+                                                                            <h6>disable</h6>
+                                                                        <%}%>
+                                                                        
+                                                                    </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+            </div>
+    </div>
+
+    <!-- model of add EmployeePerformance -->
+    <div class="modal fade model-of-addEmployeePerformance" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">EmployeePerformance</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/newEmployeePerformance" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="form-label f-w-500">Employee Name</label>
+                            <select name="username" class="form-control btn-square">
+                                <option selected disabled>--Please Select--</option>
+                                <% User.forEach( (item)=>{ %>
+                                    <option value="<%=item.username %>">
+                                        <%=item.username %>
+                                    </option>
+                                    <% }) %>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label f-w-500">Month selection</label>
+                            <input required name="Month" class="datepicker-here form-control digits" type="text"
+                                data-language="en" data-min-view="months" data-view="months" data-date-format="MM yyyy">
+                        </div>
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">Rating</label>
+                            <input required name="rating" class="form-control" id="Designat" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter Designation">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- model of edit EmployeePerformance -->
+    <div class="modal fade model-of-editEmployeePerformance" tabindex="-1" role="dialog"
+        aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">EmployeePerformance</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formaction" method="post" class="theme-form">
+                        <div class="mb-3">
+                            <label class="col-form-label pt-0" for="exampleInputEmail1">EmployeePerformance</label>
+                            <input required name="EmployeePerformance" class="form-control" id="Designat" type="text"
+                                aria-describedby="emailHelp" placeholder="Enter EmployeePerformance">
+                        </div>
+                        <button class="btn btn-pill btn-primary btn-air-light" type="submit" data-bs-original-title=""
+                            title="">Done</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include ('./partials/script') %>
+</body>
+
+</html>
