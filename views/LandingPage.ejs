@@ -89,9 +89,7 @@
               <div class="card-body text-center">
                 <%TrainingType.forEach((item)=>{%>
                   <%if(item.Status=="Active"){%>
-                    <button class="btn btn-warning example-popover mt-2 mb-2" type="button" data-bs-toggle="popover"
-                      title="" data-bs-content="And here's some amazing content. It's very engaging. Right?"
-                      data-bs-original-title="Contact us for get training Of <%=item.TrainingType%>">
+                    <button class="btn btn-warning example-popover mt-2 mb-2" type="button">
                       <%=item.TrainingType%>
                     </button>
                     <%}%>
