@@ -23,7 +23,7 @@ const bcrypt = require('bcrypt');
             console.log("token:----", token)
             const Setting = await Settings.find();
 
-            res.render("singIn",{Setting});
+            res.render("SingIn",{Setting});
         } catch (error) {
             console.log(error);
         }
