@@ -41,10 +41,14 @@
       <div class="container-fluid">
         <div class="row">
           <ul class="animat-block col-lg-6">
-            <li><img class="img-fluid" style="width:321px ; height: 227px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename1%>" alt=""></li>
-            <li><img class="img-fluid" style="width:591px ; height: 630px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename2%>" alt=""></li>
-            <li><img class="img-fluid" style="width:542px ; height: 584px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename3%>" alt=""></li>
-            <li><img class="img-fluid" style="width:262px ; height: 261px; object-fit: cover" src="../../upload/<%=DashbordImage[0].image[0].imagename4%>" alt=""></li>
+            <li><img class="img-fluid" style="width:321px ; height: 227px; object-fit: cover"
+                src="../../upload/<%=DashbordImage[0].image[0].imagename1%>" alt=""></li>
+            <li><img class="img-fluid" style="width:591px ; height: 630px; object-fit: cover"
+                src="../../upload/<%=DashbordImage[0].image[0].imagename2%>" alt=""></li>
+            <li><img class="img-fluid" style="width:542px ; height: 584px; object-fit: cover"
+                src="../../upload/<%=DashbordImage[0].image[0].imagename3%>" alt=""></li>
+            <li><img class="img-fluid" style="width:262px ; height: 261px; object-fit: cover"
+                src="../../upload/<%=DashbordImage[0].image[0].imagename4%>" alt=""></li>
 
           </ul>
           <div class="col-lg-5">
@@ -120,7 +124,7 @@
                 </ul>
               </div>
               <div class="p-4">
-                <div class="row align-items-center">
+                <div class="row align-items-center text-center">
                   <div class="col-md-2">
                     <div class="mo-mb-2">
                       <img src="../../upload/<%=Setting[0].image%>" style="height: 100px; width: 100px;" alt=""
@@ -150,8 +154,9 @@
                     </div>
                   </div>
                   <div class="col-md-2">
-                  <a href="/ApplyForJob/<%=item.id%>" class="btn btn-primary" type="button" data-bs-original-title="" title="">Apply Now</a>
-                </div>
+                    <a href="/ApplyForJob/<%=item.id%>" class="btn btn-primary" type="button" data-bs-original-title=""
+                      title="">Apply Now</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -160,8 +165,8 @@
       </div>
     </section>
     <!--sidebar section end-->
-   
-  
+
+
     <!-- unique-cards end-->
     <!-- counter-section start-->
     <section class="counter-sec section-py-space">
@@ -171,7 +176,9 @@
             <div class="counter-box">
               <div>
                 <div class="count-number">
-                  <h3><%=department.length%></h3>
+                  <h3>
+                    <%=department.length%>
+                  </h3>
                 </div>
                 <div class="count-detail">
                   <h4>Departments </h4>
@@ -183,7 +190,9 @@
             <div class="counter-box">
               <div>
                 <div class="count-number">
-                  <h3><%=Designation.length%></h3>
+                  <h3>
+                    <%=Designation.length%>
+                  </h3>
                 </div>
                 <div class="count-detail">
                   <h4>Designation</h4>
@@ -195,7 +204,9 @@
             <div class="counter-box">
               <div>
                 <div class="count-number">
-                  <h3><%=Branch.length%></h3>
+                  <h3>
+                    <%=Branch.length%>
+                  </h3>
                 </div>
                 <div class="count-detail">
                   <h4>Branch</h4>
@@ -207,7 +218,9 @@
             <div class="counter-box">
               <div>
                 <div class="count-number">
-                  <h3><%=User.length%></h3>
+                  <h3>
+                    <%=User.length%>
+                  </h3>
                 </div>
                 <div class="count-detail">
                   <h4>Employees</h4>
@@ -225,57 +238,65 @@
         <div class="row">
           <div class="row align-items-center text-center" style="padding-top: 50px;">
             <div class="col-lg-3">
-                <div class="contact-item mt-40">
-                    <div>
-                        <div class="">
-                          <h1><i class="icofont icofont-earth"></i></h1>
-                        </div>
-                    </div>
-                    <div class="contact-details">
-                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].web%></p>
-                    </div>
+              <div class="contact-item mt-40">
+                <div>
+                  <div class="">
+                    <h1><i class="icofont icofont-earth"></i></h1>
+                  </div>
                 </div>
+                <div class="contact-details">
+                  <p class="mb-0 mt-2 text-muted">
+                    <%=Setting[0].web%>
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div class="col-lg-3">
-                <div class="contact-item mt-40">
-                    <div>
-                        <div class="">
-                            <h1><i class="icofont icofont-mobile-phone"></i></h1>
-                        </div>
-                    </div>
-                    <div class="contact-details">
+              <div class="contact-item mt-40">
+                <div>
+                  <div class="">
+                    <h1><i class="icofont icofont-mobile-phone"></i></h1>
+                  </div>
+                </div>
+                <div class="contact-details">
 
-                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].mobile%></p>
-                    </div>
+                  <p class="mb-0 mt-2 text-muted">
+                    <%=Setting[0].mobile%>
+                  </p>
                 </div>
+              </div>
             </div>
-            
+
             <div class="col-lg-3">
-                <div class="contact-item mt-40">
-                    <div>
-                        <div class="">
-                          <h1><i class="icofont icofont-email"></i></h1>
-                        </div>
-                    </div>
-                    <div class="contact-details">
-                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].email%></p>
-                    </div>
+              <div class="contact-item mt-40">
+                <div>
+                  <div class="">
+                    <h1><i class="icofont icofont-email"></i></h1>
+                  </div>
                 </div>
+                <div class="contact-details">
+                  <p class="mb-0 mt-2 text-muted">
+                    <%=Setting[0].email%>
+                  </p>
+                </div>
+              </div>
             </div>
             <div class="col-lg-3">
-                <div class="contact-item mt-40">
-                    <div>
-                        <div class="">
-                        <h1><i class="icofont icofont-location-pin"></i></h1>
-                        </div>
-                    </div>
-                    <div class="contact-details">
-                        <p class="mb-0 mt-2 text-muted"><%=Setting[0].location%></p>
-                    </div>
+              <div class="contact-item mt-40">
+                <div>
+                  <div class="">
+                    <h1><i class="icofont icofont-location-pin"></i></h1>
+                  </div>
                 </div>
+                <div class="contact-details">
+                  <p class="mb-0 mt-2 text-muted">
+                    <%=Setting[0].location%>
+                  </p>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
         </div>
       </div>
     </section>
