@@ -1,6 +1,22 @@
 $(document).ready(function () {
 
 
+    // Check if the device is a touch-enabled mobile device
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Disable any default touch events that may interfere with the input field
+        $('input').on('touchstart', function (event) {
+            event.stopPropagation();
+        });
+
+        // Enable touch events on the input field
+        $('input').on('touchend', function (event) {
+            event.preventDefault();
+            $(this).focus();
+        });
+    }
+
     /*-------------------------------
         showing data of edit
     ----------------------------------*/
@@ -690,18 +706,18 @@ $(document).ready(function () {
             '<button class="btn  btn-danger ms-3 me-3" type="button" id="Clockout" data-bs-original-title="" title="">Clock Out</button>')
     })
     //=================submite time===========================
-    $(document).on("click","#Start",function(){
+    $(document).on("click", "#Start", function () {
         alert(1234)
         var base_url = window.location.origin
-        var PresentTime=$("#timeofwork").val()
-        var BreakTime=$("#timeofBreak").val()
-        var startclockin=$("#startclockin").val()
-        var endClockOut=$("#endClockOut").val()
+        var PresentTime = $("#timeofwork").val()
+        var BreakTime = $("#timeofBreak").val()
+        var startclockin = $("#startclockin").val()
+        var endClockOut = $("#endClockOut").val()
         $.ajax({
             url: base_url + "/Time",
             type: "post",
             dataType: "json",
-            data: { PresentTime,BreakTime,startclockin,endClockOut },
+            data: { PresentTime, BreakTime, startclockin, endClockOut },
             success: function (res) {
                 alert("You are Clocked in")
             }
@@ -740,7 +756,7 @@ $(document).ready(function () {
             hr = 0
             min = 0
             sec = 0
-            
+
 
         } else if (lol == 2) {
             let x = hour < 10 ? "0" + hour : hour;
