@@ -6,12 +6,12 @@ $(document).ready(function () {
 
     if (isMobile) {
         // Disable any default touch events that may interfere with the input field
-        $('input').on('touchstart', function (event) {
+        $('.lodulalit').on('touchstart', function (event) {
             event.stopPropagation();
         });
 
         // Enable touch events on the input field
-        $('input').on('touchend', function (event) {
+        $('.lodulalit').on('touchend', function (event) {
             event.preventDefault();
             $(this).focus();
         });
